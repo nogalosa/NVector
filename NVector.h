@@ -2,9 +2,9 @@
 #ifndef NVECTOR_NVECTOR_H
 #define NVECTOR_NVECTOR_H
 
-#include "NIterator.h"
 #include <algorithm>
 #include <exception>
+#include "NIterator.h"
 
 template <class T>
 class NVector {
@@ -119,7 +119,6 @@ T& NVector<T>::back() {
 
 template <class T>
 NVector<T> &NVector<T>::operator=(const NVector<T> &v) {
-    std::cout << "copy operator=" << std::endl;
     if (&v == this)
         return *this;
     T* p = new T[v._size];
@@ -128,19 +127,21 @@ NVector<T> &NVector<T>::operator=(const NVector<T> &v) {
     delete[] element;  // atlaisviname seną atmintį!
     element = p;       // elem point'ina į naują atmintį
     _size = v._size;      // atnaujiname size
+    _capacity = v._capacity;
     return *this;
 }
 
 template <class T>
 NVector<T>& NVector<T>::operator=(NVector&& v) {
-    std::cout << "move operator=" << std::endl;
     if (&v == this)
         return *this;
     delete[] element;     // atlaisviname seną atmintį!
     element = v.element;     // elem point'ina į v.elems atmintį
     _size = v._size;         // atnaujiname size
+    _capacity = v._capacity;
     v.element = nullptr;  // v neturi jokių elementų
     v._size = 0;
+    v._capacity = 0;
     return *this;
 }
 
@@ -184,8 +185,8 @@ NIterator<T> NVector<T>::begin() const{
     NIterator<T> temp(element);
     return temp;
 }
-template<class T>
 
+template<class T>
 NIterator<T> NVector<T>::end() {
     NIterator<T> temp(element + _size);
     return temp;
@@ -249,10 +250,15 @@ NIterator<T> NVector<T>::insert(NIterator<T> pos, const T & value){
 template<class T>
 void NVector<T>::resize(int new_size) {
     if (new_size < 0)
+    {
         throw std::exception();
+    }
     else if (new_size < _size)
+    {
         _size = new_size;
-    else if (new_size > _capacity) {
+    }
+    else if (new_size > _capacity)
+    {
         T *tempElem = new T[new_size];
         for (int i = 0; i < _size; i++)
             tempElem[i] = element[i];
@@ -275,7 +281,8 @@ void NVector<T>::reserve(int kiek){
 
 template<class T>
 void NVector<T>::push_back(const T &val) {
-    if(_size == _capacity) {
+    if(_size >= _capacity)
+    {
         resize(std::max(2 * _size, 1));
     }
     element[_size] = val;

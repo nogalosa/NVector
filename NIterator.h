@@ -7,17 +7,17 @@
 template<class T>
 class NIterator : public std::iterator<std::random_access_iterator_tag, T> {
 private:
-    T * pointer;
+    T* ptr;
 public:
-    NIterator(): pointer(nullptr){};
-    NIterator(T * item) : pointer(item){}
+    NIterator(): ptr(nullptr){};
+    NIterator(T * item) : ptr(item){}
 
     NIterator<T> & operator=(const NIterator<T> & iter) = default;
     ~NIterator() = default;
 
     NIterator operator+(int add);
     NIterator operator-(int sub);
-    NIterator operator-(const NIterator &it) { return pointer - it.pointer; }
+    ptrdiff_t operator-(const NIterator &it) const { return ptr - it.ptr; }
 
     bool operator!=(const NIterator<T> & iter) const;
     bool operator==(const NIterator<T> & iter) const;
@@ -37,47 +37,47 @@ public:
 
 template<class T>
 bool NIterator<T>::operator==(const NIterator<T> & iter) const {
-    return pointer == iter.pointer;
+    return ptr == iter.ptr;
 }
 
 template<class T>
 bool NIterator<T>::operator!=(const NIterator<T> & iter) const {
-    return pointer != iter.pointer;
+    return ptr != iter.ptr;
 }
 
 template<class T>
 bool NIterator<T>::operator<(const NIterator<T> & iter) const{
-    return pointer < iter.pointer;
+    return ptr < iter.ptr;
 }
 
 template<class T>
 bool NIterator<T>::operator<=(const NIterator<T> & iter) const{
-    return pointer <= iter.pointer;
+    return ptr <= iter.ptr;
 }
 
 template<class T>
 bool NIterator<T>::operator>(const NIterator<T> &iter) const {
-    return pointer > iter.pointer;
+    return ptr > iter.ptr;
 }
 
 template<class T>
 bool NIterator<T>::operator>=(const NIterator<T> &iter) const {
-    return pointer >= iter.pointer;
+    return ptr >= iter.ptr;
 }
 
 template<class T>
 T & NIterator<T>::operator[](int n) {
-    return *(pointer + n);
+    return *(ptr + n);
 }
 
 template<class T>
 NIterator<T> NIterator<T>::operator+(int add) {
-    NIterator<T> temp(pointer + add);
+    NIterator<T> temp(ptr + add);
     return temp;
 }
 template<class T>
 NIterator<T> NIterator<T>::operator-(int sub){
-    NIterator<T> temp(pointer - sub);
+    NIterator<T> temp(ptr - sub);
     return temp;
 }
 
@@ -88,33 +88,33 @@ NIterator<T> operator+(int add, const NIterator<T> & iter){
 
 template<class T>
 NIterator<T> & NIterator<T>::operator++(){
-    pointer++;
+    ptr++;
     return *this;
 }
 
 template<class T>
 NIterator<T> NIterator<T>::operator++(int){
     NIterator<T> temp = *this;
-    pointer++;
+    ptr++;
     return temp;
 }
 
 template<class T>
 NIterator<T> & NIterator<T>::operator--(){
-    pointer--;
+    ptr--;
     return *this;
 }
 
 template<class T>
 NIterator<T> NIterator<T>::operator--(int){
     NIterator<T> temp = *this;
-    pointer--;
+    ptr--;
     return temp;
 }
 
 template<class T>
 T & NIterator<T>::operator*(){
-    return *pointer;
+    return *ptr;
 }
 
 
