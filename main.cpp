@@ -3,6 +3,7 @@
 //
 
 #include "main.h"
+#include "vector"
 #include <chrono>
 
 class Timer {
@@ -23,14 +24,13 @@ public:
 int main() {
 
     std::cout << "Paleisti" << std::endl;
-    Timer t;  // Paleisti
 
     NVector<int> a(1e7,1);
     NVector<int> b(1e7,2);
     NVector<int> c;
     c = a + b;
 
-    std::cout << c.size() << " elementų sudėtis užtruko: " << t.elapsed() << " s\n";
+
 
     std::cout << "c[100000] = " << c[100000] << std::endl; // Patikriname ar tikrai sudėjo
 
@@ -58,6 +58,29 @@ int main() {
     std::cout << e.max_size() << "\n";
 
     NVector<int> f(99999);
+
+    // Pradėti v1 užpildymo laiko matavimą
+    Timer t;  // Paleisti
+    unsigned int sz = 10000000;  // 100000, 1000000, 10000000, 100000000
+    int cap_moves = 0;
+    std::vector<int> v1;
+    for (int i = 1; i <= sz; ++i){
+        if(v1.size() == v1.capacity())
+            cap_moves++;
+        v1.push_back(i);
+    }
+// Baigti v1 užpildymo laiko matavimą
+    std::cout << v1.size() << " elementų sudėtis užtruko: " << t.elapsed() << " s\n";
+    std::cout << cap_moves << "\n";
+
+// Pradėti v2 užpildymo laiko matavimą
+    Timer t1;  // Paleisti
+    NVector<int> v2;
+    for (int i = 1; i <= sz; ++i)
+        v2.push_back(i);
+// Baigti v2 užpildymo laiko matavimą
+    std::cout << v2.size() << " elementų sudėtis užtruko: " << t1.elapsed() << " s\n";
+    std::cout << v2.cap_moves() << "\n";
 
     return 0;
 }
