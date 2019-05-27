@@ -36,6 +36,7 @@ public:
 
     int size() const { return _size; }
     int capacity() const { return _capacity;}
+    size_t max_size() const;
 
     bool empty() const;
 
@@ -153,6 +154,11 @@ NVector<T> operator+(const NVector<T>& a, const NVector<T>& b) {
     NVector<T> c(a.size());
     for (auto i = 0; i != a.size(); ++i) c[i] = a[i] + b[i];
     return c;
+}
+
+template <class T>
+size_t NVector<T>::max_size() const {
+    return std::numeric_limits<size_type>::max();
 }
 
 template<class T>

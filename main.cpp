@@ -55,6 +55,7 @@ int main() {
     e.insert(e.end(), -200);
     std::cout << e.front() << " < " << e.back() << " < " << e.capacity() << " < " << e.size() << "\n";
     std::cout << e.front() << " < " << e.back() << " < " << e.capacity() << " < " << e.size() << "\n";
+    std::cout << e.max_size() << "\n";
 
     NVector<int> f(99999);
 
