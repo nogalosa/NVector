@@ -2,31 +2,41 @@
 
 ### Methods
 
-![max_size](https://puu.sh/DxSQL/7b2b3a5806.png)
 __Max size__
+
+![max_size](https://puu.sh/DxSQL/7b2b3a5806.png)
+
 Returns max `size_t` available on current machine using 
 `std::numeric_limits`.
 
-![resize](https://puu.sh/DxSTE/046f4753da.png)
 __Resize__
+
+![resize](https://puu.sh/DxSTE/046f4753da.png)
+
 Checks if argument is not negative. If so, throws an exception. If 
 `new_size` is smaller, than current vector size, then it shrinks it
 down to the `new_size`. If `new_size` is bigger than current vector
 capacity it will extend it to given number.
 
-![pop_back](https://puu.sh/DxSXd/38751939e8.png)
 __Pop_back__
+
+![pop_back](https://puu.sh/DxSXd/38751939e8.png)
+
 If vector is not negative and not equal to 0 `pop_back` virtually
 removes last element of the vector.
 
-![push_back](https://puu.sh/DxSZh/037b280b2b.png)
 __Push_back__
+
+![push_back](https://puu.sh/DxSZh/037b280b2b.png)
+
 Firstly `push_back` checks if it can push one more element in to the
 vector by considering it's capacity. If it is too low, it will increase
 it. Then it add the element to the vector and increase it's size by 1.
 
-![shrink_to_fit](https://puu.sh/DxTc3/e569c339ed.png)
 __Shrink_to_fit__
+
+![shrink_to_fit](https://puu.sh/DxTc3/e569c339ed.png)
+
 It shrinks the capacity of the vector to the vector's size.
 
 
