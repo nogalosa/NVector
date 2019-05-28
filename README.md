@@ -51,3 +51,8 @@ It shrinks the capacity of the vector to the vector's size.
 | | std::vector capacity extends | NVector capacity extends |
 | :---: | :---: | :---: |
 | 10 000 000 | 41 | 25 |
+
+| Type \ Student count | 10 000 | 100 000 |
+| :---: | :---: | :---: |
+| Vector | 26.5866 s / 0.0856295 s | 1911.1 s / 0.894586 s |
+| NVector | 187.567 s / 0.359305 s | ~13 744 s / ~3 s |
