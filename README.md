@@ -35,7 +35,7 @@ it. Then it add the element to the vector and increase it's size by 1.
 
 __Shrink_to_fit__
 
-![shrink_to_fit](https://puu.sh/DxTc3/e569c339ed.png)
+![shrink_to_fit](https://puu.sh/DyM35/1aaaecbf53.png)
 
 It shrinks the capacity of the vector to the vector's size.
 

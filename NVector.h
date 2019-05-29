@@ -300,6 +300,11 @@ void NVector<T>::push_back(const T &val) {
 
 template<class T>
 void NVector<T>::shrink_to_fit() {
+    T *tempElem = new T[_size];
+    for (int i = 0; i < _size; i++)
+        tempElem[i] = element[i];
+    delete[] element;
+    element = tempElem;
     _capacity = _size;
 }
 
