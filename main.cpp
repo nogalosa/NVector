@@ -54,6 +54,7 @@ int main() {
     e.insert(e.begin(), -100);
     e.insert(e.end(), -200);
     std::cout << e.front() << " < " << e.back() << " < " << e.capacity() << " < " << e.size() << "\n";
+    e.reserve(9);
     std::cout << e.front() << " < " << e.back() << " < " << e.capacity() << " < " << e.size() << "\n";
     std::cout << e.max_size() << "\n";
 

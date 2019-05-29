@@ -283,7 +283,8 @@ void NVector<T>::pop_back() {
 
 template<class T>
 void NVector<T>::reserve(int kiek){
-    resize(kiek);
+    if(_capacity < kiek)
+        resize(kiek);
 }
 
 template<class T>
